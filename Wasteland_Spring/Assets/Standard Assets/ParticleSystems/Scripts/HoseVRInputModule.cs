@@ -19,7 +19,7 @@ using Valve.VR.InteractionSystem.Sample;
 
 namespace Valve.VR.InteractionSystem.Sample
 {
-    public class Hose3 : MonoBehaviour
+    public class HoseVRInputModule : MonoBehaviour
     {
         public SteamVR_Action_Boolean plantAction;
 
