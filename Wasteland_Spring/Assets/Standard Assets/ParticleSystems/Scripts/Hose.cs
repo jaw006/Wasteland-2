@@ -52,6 +52,12 @@ namespace Valve.VR.InteractionSystem.Sample
 
         public void FireProjectile()
         {
+            // If not active, don't fire!
+            if (!this.isActiveAndEnabled)
+            {
+                return;
+            }
+
             if (fireDelay == 0)
             {
                 fireDelay = 1;
