@@ -45,14 +45,14 @@ namespace Valve.VR.InteractionSystem.Sample
                 return;
             }
 
-            plantAction.AddOnUpdateListener(OnPlantActionChange, hand.handType);
+            plantAction.AddOnUpdateListener(OnHoseSprayButtonStateUpdated, hand.handType);
 //            plantAction.AddOnChangeListener(OnPlantActionChange, hand.handType);
         }
 
         private void OnDisable()
         {
             if (plantAction != null)
-                plantAction.RemoveOnUpdateListener(OnPlantActionChange, hand.handType);
+                plantAction.RemoveOnUpdateListener(OnHoseSprayButtonStateUpdated, hand.handType);
 //                plantAction.RemoveOnChangeListener(OnPlantActionChange, hand.handType);
         }
 
@@ -63,15 +63,22 @@ namespace Valve.VR.InteractionSystem.Sample
             }
         }
 
-        private void OnPlantActionChange(SteamVR_Action_Boolean actionIn, SteamVR_Input_Sources inputSource, bool newValue)
+        // This function is called when actionIn changes from true to false or vice versa
+        private void OnHoseSprayButtonStateUpdated(SteamVR_Action_Boolean actionIn, SteamVR_Input_Sources inputSource, bool newState)
         {
-            if (newValue)
+            // Trigger is pressed
+            if(newState)
             {
-                Plant();
+                hoseOn = true;
+            }
+            // Trigger is not pressed
+            else
+            {
+                hoseOn = false;
             }
         }
 
-        public void Plant()
+        public void ToggleHoseSpray()
         {
             hoseOn = !hoseOn;
         }
