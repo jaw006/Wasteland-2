@@ -18915,7 +18915,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6108773204027145948}
   m_LocalRotation: {x: 0.17216294, y: 0.1285432, z: 0.022665681, w: -0.97638255}
-  m_LocalPosition: {x: 2, y: -0.5, z: -0}
+  m_LocalPosition: {x: -0.18, y: 0.257, z: 0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6108773204026843894}
@@ -18937,16 +18937,18 @@ MonoBehaviour:
   projectile: {fileID: 398772695494587619, guid: 5188240a695930c429c8a8c59c151a94,
     type: 3}
   Spawnpoint: {fileID: 6108773204026843900}
-  keyCode: 0
-  maxPower: 20
-  minPower: 5
-  changeSpeed: 5
   hoseWaterSystems:
   - {fileID: 6108773204008495034}
   - {fileID: 6108773204008495030}
   - {fileID: 6108773204008495038}
   - {fileID: 6108773204008495032}
   systemRenderer: {fileID: 6108773204008394266}
+  keyCode: 49
+  mouseButton: 0
+  maxPower: 20
+  minPower: 5
+  changeSpeed: 5
+  WaitTime: 0.1
 --- !u!114 &6108773204033669946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25179,7 +25181,6 @@ GameObject:
   - component: {fileID: 7509557910356281131}
   - component: {fileID: 7611731300343368297}
   - component: {fileID: 7611731283321458529}
-  - component: {fileID: 7509557909212107882}
   - component: {fileID: 7533471747231140043}
   m_Layer: 26
   m_Name: RightHand
@@ -25311,24 +25312,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967039
   hand: {fileID: 0}
---- !u!114 &7509557909212107882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7509557910367453993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b408261d0cfe3004c8a6214b6043e14c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  plantAction:
-    actionPath: /actions/default/in/InteractUI
-    needsReinit: 0
-  hand: {fileID: 7509557910356281131}
-  prefabToPlant: {fileID: 7509557910754913488}
-  hose: {fileID: 7509557910748862770}
 --- !u!114 &7533471747231140043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25345,8 +25328,8 @@ MonoBehaviour:
     actionPath: /actions/default/in/InteractUI
     needsReinit: 0
   hand: {fileID: 7509557910356281131}
-  prefabToPlant: {fileID: 7509557910754913488}
-  hose: {fileID: 7509557910748862770}
+  prefabToPlant: {fileID: 6108773204027145948}
+  hose: {fileID: 6108773204033669950}
 --- !u!1 &7509557910367470643
 GameObject:
   m_ObjectHideFlags: 0
@@ -26544,16 +26527,18 @@ MonoBehaviour:
   projectile: {fileID: 398772695494587619, guid: 5188240a695930c429c8a8c59c151a94,
     type: 3}
   Spawnpoint: {fileID: 7509557910754750704}
-  keyCode: 323
-  maxPower: 20
-  minPower: 5
-  changeSpeed: 5
   hoseWaterSystems:
   - {fileID: 6108773204008495036}
   - {fileID: 7509557910774150586}
   - {fileID: 7509557910774150578}
   - {fileID: 7509557910774150580}
   systemRenderer: {fileID: 0}
+  keyCode: 323
+  mouseButton: 0
+  maxPower: 20
+  minPower: 5
+  changeSpeed: 5
+  WaitTime: 0.1
 --- !u!114 &7509557910748862774
 MonoBehaviour:
   m_ObjectHideFlags: 0

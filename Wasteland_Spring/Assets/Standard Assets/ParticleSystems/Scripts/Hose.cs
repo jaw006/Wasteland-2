@@ -16,8 +16,8 @@ namespace Valve.VR.InteractionSystem.Sample
         // Toggles system renderer 
         public KeyCode keyCode; 
 
-        // Mouse button for playing hose anim
-        public MouseButton mouseButton = MouseButton.LeftMouse;
+        // Mouse button for firing hose 
+        public MouseButton fireMouseButton = MouseButton.LeftMouse;
 
         // Hose parameters
         public float maxPower = 20;
@@ -38,11 +38,11 @@ namespace Valve.VR.InteractionSystem.Sample
             m_Power = UpdateHosePower();
 
             // Draw debug particles if '1' key is pressed
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetKeyDown(keyCode))
             {
                 systemRenderer.enabled = !systemRenderer.enabled;
             }
-
+            
             // Set particle system properties 
             foreach (var system in hoseWaterSystems)
             {
@@ -52,15 +52,11 @@ namespace Valve.VR.InteractionSystem.Sample
                 emission.enabled = (m_Power > minPower*1.1f);
             }
 
-            // If hose key is pressed, fire hose 
-//            if (Input.GetKey(keyCode))
-            if(hoseKeyPressed)
+            // If hose key OR mouse button is pressed, fire hose 
+            if(hoseKeyPressed || FireMouseButtonIsPressed())
             {
                 FireProjectile();
             }
-
-
-
 
         }
 
@@ -72,9 +68,11 @@ namespace Valve.VR.InteractionSystem.Sample
                 return;
             }
 
+            // Delay condition
             if (fireDelay == 0)
             {
                 fireDelay = 1;
+
                 // Wait before firing again
                 StartCoroutine(FireDelayer(WaitTime));
 
@@ -82,12 +80,6 @@ namespace Valve.VR.InteractionSystem.Sample
                 Rigidbody clone;
                 clone = (Rigidbody)Instantiate(projectile, Spawnpoint.position, projectile.rotation);
                 clone.velocity = Spawnpoint.TransformDirection(Vector3.forward * 20);
-
-//                // Fire particles
-//                foreach(var system in hoseWaterSystems)
-//                {
-//                    system.Play();
-//                }
 
             }
 
@@ -100,15 +92,15 @@ namespace Valve.VR.InteractionSystem.Sample
         }
 
         // Returns current state of mouse button for 2d debug control
-        private bool CheckMouseButtonPressed()
+        private bool FireMouseButtonIsPressed()
         {
-            return Input.GetMouseButton((int)mouseButton);
+            return Input.GetMouseButton((int)fireMouseButton);
         }
 
         // Sets power of hose based upon how long the hose key has been pressed
         private float UpdateHosePower()
         {
-            //            bool hoseIsOn = Input.GetMouseButton(0);
+            // bool hoseIsOn = Input.GetMouseButton(0);
             return Mathf.Lerp(m_Power, hoseKeyPressed ? maxPower : minPower, Time.deltaTime*changeSpeed);
         }
 
