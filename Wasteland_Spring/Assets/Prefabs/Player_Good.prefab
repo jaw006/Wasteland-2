@@ -25323,7 +25323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plantAction:
-    actionPath: /actions/default/in/GrabPinch
+    actionPath: /actions/default/in/InteractUI
     needsReinit: 0
   hand: {fileID: 7509557910356281131}
   prefabToPlant: {fileID: 7509557910754913488}
@@ -26530,7 +26530,7 @@ MonoBehaviour:
   minPower: 5
   changeSpeed: 5
   hoseWaterSystems:
-  - {fileID: 0}
+  - {fileID: 6108773204008495036}
   - {fileID: 7509557910774150586}
   - {fileID: 7509557910774150578}
   - {fileID: 7509557910774150580}

@@ -6,9 +6,20 @@ using UnityEngine;
 using Valve.VR.InteractionSystem;
 using Valve.VR.InteractionSystem.Sample;
 
+// JW - Notes 5/3/2020:
+// This script is the interface for Hose.cs script (mouse only) and Valve's VR Interaction System
+//
+// Bugs addressed:
+    // Hose turns on but doesn't turn off
+// TODO: Make hose system more robust
+// Hose script hooks into Hose2
+// Objects that need to be controlled in 2D debug mode must be under NoSteamVRFallbackObjects
+// SetHoseState.cs script sets the hose state
+// HoseState.cs activates the Hose object
+
 namespace Valve.VR.InteractionSystem.Sample
 {
-    public class Hose2 : MonoBehaviour
+    public class Hose3 : MonoBehaviour
     {
         public SteamVR_Action_Boolean plantAction;
 
@@ -34,13 +45,15 @@ namespace Valve.VR.InteractionSystem.Sample
                 return;
             }
 
-            plantAction.AddOnChangeListener(OnPlantActionChange, hand.handType);
+            plantAction.AddOnUpdateListener(OnPlantActionChange, hand.handType);
+//            plantAction.AddOnChangeListener(OnPlantActionChange, hand.handType);
         }
 
         private void OnDisable()
         {
             if (plantAction != null)
-                plantAction.RemoveOnChangeListener(OnPlantActionChange, hand.handType);
+                plantAction.RemoveOnUpdateListener(OnPlantActionChange, hand.handType);
+//                plantAction.RemoveOnChangeListener(OnPlantActionChange, hand.handType);
         }
 
         private void Update()

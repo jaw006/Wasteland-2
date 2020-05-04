@@ -55,6 +55,8 @@ namespace Valve.VR.InteractionSystem.Sample
             if (fireDelay == 0)
             {
                 fireDelay = 1;
+                // Delays line
+                // But throws error
                 StartCoroutine(FireDelayer(0.1f));
                 //fire animation etc.
                 Rigidbody clone;
