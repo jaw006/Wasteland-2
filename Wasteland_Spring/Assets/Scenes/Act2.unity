@@ -1055,42 +1055,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 203251747}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &206010636 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7509557910367453993, guid: 2e803a430c685b547806e3ff275a9b9b,
-    type: 3}
-  m_PrefabInstance: {fileID: 7509557910046951456}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &206010638 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7509557910356281131, guid: 2e803a430c685b547806e3ff275a9b9b,
-    type: 3}
-  m_PrefabInstance: {fileID: 7509557910046951456}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 206010636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e3e4511966ba94d8ba0b98c6c62f82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &206010642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 206010636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99051df4bf47fca409436a4d49673a73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  plantAction:
-    actionPath: /actions/default/in/InteractUI
-    needsReinit: 0
-  hand: {fileID: 206010638}
-  prefabToPlant: {fileID: 1765998274}
-  hose: {fileID: 1765998276}
 --- !u!1 &260552681
 GameObject:
   m_ObjectHideFlags: 0
@@ -17168,24 +17132,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: f9e023eaa09e75f4983dce94750d8add, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de378bc91828d274ab164190ea4eba64, type: 3}
---- !u!1 &1765998274 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7509557910754913488, guid: 2e803a430c685b547806e3ff275a9b9b,
-    type: 3}
-  m_PrefabInstance: {fileID: 7509557910046951456}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1765998276 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7509557910748862770, guid: 2e803a430c685b547806e3ff275a9b9b,
-    type: 3}
-  m_PrefabInstance: {fileID: 7509557910046951456}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1765998274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 915950f1f73ea9e429d92b7226238623, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1808870600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28259,5 +28205,6 @@ PrefabInstance:
       propertyPath: InitialModule.startRotationY.minMaxState
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7509557909212107882, guid: 2e803a430c685b547806e3ff275a9b9b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2e803a430c685b547806e3ff275a9b9b, type: 3}
