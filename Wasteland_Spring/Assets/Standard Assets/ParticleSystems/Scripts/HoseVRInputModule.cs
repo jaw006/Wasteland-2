@@ -58,6 +58,7 @@ namespace Valve.VR.InteractionSystem.Sample
 
         private void Update()
         {
+            hose.SetHoseButtonPressed(hoseOn);
             if(hoseOn) {
                 hose.FireProjectile();
             }

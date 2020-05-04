@@ -1,36 +1,49 @@
 using System;
 using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UIElements;
 
 namespace Valve.VR.InteractionSystem.Sample
 {
     public class Hose : MonoBehaviour
     {
-
+        // Object references
         public Rigidbody projectile;
         public Transform Spawnpoint;
-        public KeyCode keyCode;
-
-        public float maxPower = 20;
-        public float minPower = 5;
-        public float changeSpeed = 5;
         public ParticleSystem[] hoseWaterSystems;
         public Renderer systemRenderer;
 
+        // Toggles system renderer 
+        public KeyCode keyCode; 
+
+        // Mouse button for playing hose anim
+        public MouseButton mouseButton = MouseButton.LeftMouse;
+
+        // Hose parameters
+        public float maxPower = 20;
+        public float minPower = 5;
+        public float changeSpeed = 5;
+        public float WaitTime = 0.1f; // Spawn Delay between rigidbodies being spawned
+        // Current power of hose
         private float m_Power;
         int fireDelay = 0;
+        // True if the button that controls the hose is pressed, false otherwise
+        private bool hoseKeyPressed = false;
+
 
         // Update is called once per frame
         private void Update()
         {
-            m_Power = Mathf.Lerp(m_Power, Input.GetMouseButton(0) ? maxPower : minPower, Time.deltaTime*changeSpeed);
+            // Set power of hose
+            m_Power = UpdateHosePower();
 
+            // Draw debug particles if '1' key is pressed
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 systemRenderer.enabled = !systemRenderer.enabled;
             }
 
+            // Set particle system properties 
             foreach (var system in hoseWaterSystems)
             {
 				ParticleSystem.MainModule mainModule = system.main;
@@ -39,10 +52,11 @@ namespace Valve.VR.InteractionSystem.Sample
                 emission.enabled = (m_Power > minPower*1.1f);
             }
 
-            if (Input.GetKey(keyCode))
+            // If hose key is pressed, fire hose 
+//            if (Input.GetKey(keyCode))
+            if(hoseKeyPressed)
             {
                 FireProjectile();
- 
             }
 
 
@@ -61,23 +75,50 @@ namespace Valve.VR.InteractionSystem.Sample
             if (fireDelay == 0)
             {
                 fireDelay = 1;
-                // Delays line
-                // But throws error
-                StartCoroutine(FireDelayer(0.1f));
-                //fire animation etc.
+                // Wait before firing again
+                StartCoroutine(FireDelayer(WaitTime));
+
+                // Instantiate a new Rigidbody object and fire it
                 Rigidbody clone;
                 clone = (Rigidbody)Instantiate(projectile, Spawnpoint.position, projectile.rotation);
                 clone.velocity = Spawnpoint.TransformDirection(Vector3.forward * 20);
+
+//                // Fire particles
+//                foreach(var system in hoseWaterSystems)
+//                {
+//                    system.Play();
+//                }
+
             }
 
         }
 
+        // Interface method for HoseVRInputModule
+        public void SetHoseButtonPressed(bool hoseOn)
+        {
+            hoseKeyPressed = hoseOn;
+        }
 
+        // Returns current state of mouse button for 2d debug control
+        private bool CheckMouseButtonPressed()
+        {
+            return Input.GetMouseButton((int)mouseButton);
+        }
+
+        // Sets power of hose based upon how long the hose key has been pressed
+        private float UpdateHosePower()
+        {
+            //            bool hoseIsOn = Input.GetMouseButton(0);
+            return Mathf.Lerp(m_Power, hoseKeyPressed ? maxPower : minPower, Time.deltaTime*changeSpeed);
+        }
+
+        // Delays next hose fire by waitTime
         IEnumerator FireDelayer(float waitTime)
         {
             yield return new WaitForSeconds(waitTime);
             fireDelay = 0;
         }
+
 
 
 
